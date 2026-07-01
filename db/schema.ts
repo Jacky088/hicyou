@@ -1,4 +1,12 @@
-import { pgTable, serial, text, timestamp, boolean, integer, json } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  boolean,
+  integer,
+  json,
+} from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 // Profiles table (extends Supabase Auth)
@@ -61,6 +69,8 @@ export const bookmarks = pgTable("bookmarks", {
   isFavorite: boolean("is_favorite").notNull().default(false),
   isDofollow: boolean("is_dofollow").notNull().default(false),
   search_results: text("search_results"),
+  externalLaunchKey: text("external_launch_key").unique(),
+  externalLaunchSource: text("external_launch_source"),
 
   // AI Generated Content
   keyFeatures: json("key_features"), // Array of strings or objects
